@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+    .fade-leave-to{
+        opacity: 0;
+    }
+    .fade-leave-active{
+        transition: opacity 0.3s
+    }
+    .fade-enter{
+        opacity: 0;
+    }
+    .fade-enter-active{
+        transition: opacity 0.3s;
+    }
+</style>
+
+<body>
+
+    <div id='app'>
+            <transition name='fade'>
+                    <span v-if='show'>{{message}}</span>
+            </transition>
+           
+   
+        <button @click="toggle">按钮</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue !',
+                show:true
+            },
+            methods: {
+                toggle() {
+                    this.show = !this.show;
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

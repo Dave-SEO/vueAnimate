@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./velocity.min.js"></script>
+</head>
+<style>
+  
+</style>
+
+<body>
+    <div id='app'>
+        <transition name='fade'
+            @before-enter="handleBeforEnter"
+            @enter="handleEnter"
+            @after-enter="handleAfterEnter"
+        >
+            <div v-show='show'>{{message}}</div>
+        </transition>
+        <div>
+            <button @click="toggle">按钮</button>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue !',
+                show: true
+            },
+            methods: {
+                toggle() {
+                    this.show = !this.show;
+                },
+                handleBeforEnter: function(el){
+                   el.style.opacity = 0
+                },
+                handleEnter(el,done){
+                    Velocity(
+                        el,
+                        {
+                            opacity:1
+                        },
+                        {
+                            duration: 1000,
+                            complete:done
+                        }
+                        )
+                },
+                handleAfterEnter(el){
+
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
